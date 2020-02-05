@@ -1,0 +1,32 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details or
+// https://aka.ms/vscode-dev-containers/definitions for sample configurations.
+{
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "docker-compose.extend.yml"
+  ],
+  "service": "web",
+  "workspaceFolder": "/app",
+  "extensions": [
+    "ms-python.python",
+    "batisteo.vscode-django",
+    "jhartell.vscode-line-endings",
+    "sauravmanoj.django-template-snippets",
+    "shakram02.bash-beautify",
+    "coolbear.systemd-unit-file"
+  ],
+  "runArgs": [
+    "-u",
+    "vscode"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "python.pythonPath": "/usr/local/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "/usr/local/bin/pylint",
+    "python.linting.pylintArgs": ["--load-plugins", "pylint_django", "--disable=C0111,C0114,C0115,C0116"],
+    "python.linting.enabled": true
+  },
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "mkdir -p ~/.ssh && cp -r ~/.ssh-localhost/* ~/.ssh && chmod 700 ~/.ssh && chmod 600 ~/.ssh/*"
+}

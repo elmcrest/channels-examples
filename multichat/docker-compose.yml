@@ -1,14 +1,14 @@
-version: "2"
+version: "3.7"
 
 services:
   redis:
     image: redis:latest
   web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
+    build:
+      context: .
+      dockerfile: .devcontainer/app/base.Dockerfile
     ports:
       - "8000:8000"
     links:
       - redis
+    command: "/app/.devcontainer/app/idle.sh"
